@@ -1,0 +1,47 @@
+/*-------------------------------*/
+/*--Form--*/
+.form_component{
+  margin: 0 auto;
+  width: 400px;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 6px #04183b1f;
+  border-radius: 4px;
+}
+
+.result_paginator{
+  margin: 0 auto;
+  width: 400px ;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 6px #04183b1f;
+  border-radius: 4px;
+}
+
+h1 {
+  margin: 0 0 5px 0;
+}
+/*-------------------------------*/
+/*--Form controls--*/
+/*-------------------------------*/
+/*--Search Button--*/
+
+.button_wrapper{
+  width: 100%;
+  margin: 10px 0 0 0;
+}
+
+.form_component .search_button {
+  color: #fff;
+  background-color: #1a9bdb;
+  border-color: #1a9bdb;
+  border: 1px solid transparent;
+  font-size: 1em;
+  padding: 0.4em 1em;
+  border-radius: 4px;
+}
+/*-------------------------------*/

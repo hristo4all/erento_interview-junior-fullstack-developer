@@ -1,0 +1,59 @@
+<div class="form_component">
+  <h1>Search for a city</h1>
+  <form [formGroup]="myForm">
+
+    Value: {{myForm.value | json}}
+    <pre></pre>
+    <mat-form-field>
+      <mat-label>City Search</mat-label>
+      <input matInput placeholder="" formControlName="searchString">
+      <mat-error *ngIf="searchString?.hasError('required') && searchString?.touched">
+        This field is required
+    </mat-error>
+    <mat-error *ngIf="searchString?.hasError('pattern') && searchString?.touched">
+      Invalid search string
+  </mat-error>
+    </mat-form-field>
+
+    <div class="button_wrapper">
+      <button class="search_button" type="submit">Search</button>
+    </div>
+  </form>
+</div>
+<!-- <div clas="search_result_wrapper">
+  <mat-paginator
+  class="result_paginator"
+  [length]="100"
+  [pageSize]="5"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  aria-label="Select page">
+  <ul>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+    <li>Test</li>
+  </ul>
+</mat-paginator>
+</div> -->
