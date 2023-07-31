@@ -1,6 +1,6 @@
-<div class="form_component">
+<div class="container">
   <h1>Search for a city</h1>
-  <form [formGroup]="myForm">
+  <form [formGroup]="myForm" (ngSubmit)="submitHandler()">
 
     Value: {{myForm.value | json}}
     <pre></pre>
@@ -9,51 +9,32 @@
       <input matInput placeholder="" formControlName="searchString">
       <mat-error *ngIf="searchString?.hasError('required') && searchString?.touched">
         This field is required
-    </mat-error>
-    <mat-error *ngIf="searchString?.hasError('pattern') && searchString?.touched">
-      Invalid search string
-  </mat-error>
+      </mat-error>
+      <mat-error *ngIf="searchString?.hasError('pattern') && searchString?.touched">
+        Invalid search string
+      </mat-error>
     </mat-form-field>
+    <pre></pre>
 
-    <div class="button_wrapper">
-      <button class="search_button" type="submit">Search</button>
-    </div>
+    <button class="search_button" type="submit" [disabled]="myForm.invalid">Search</button>
   </form>
 </div>
-<!-- <div clas="search_result_wrapper">
-  <mat-paginator
-  class="result_paginator"
-  [length]="100"
-  [pageSize]="5"
-  [pageSizeOptions]="[5, 10, 25, 100]"
-  aria-label="Select page">
+<div class="container" *ngIf="searchResults">
+  <h3>Cities</h3>
   <ul>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
-    <li>Test</li>
+    <li *ngFor="let city of searchResults">
+      <span>{{city.cityName}}</span>
+    </li>
   </ul>
-</mat-paginator>
-</div> -->
+  <!-- <div clas="search_result_wrapper">
+    <mat-paginator
+    class="result_paginator"
+    [length]="searchResults.length"
+    [pageSize]="5"
+    [pageSizeOptions]="[3, 5, 10]"
+    aria-label="Select page">
+
+  </mat-paginator>
+  </div> -->
+</div>
+

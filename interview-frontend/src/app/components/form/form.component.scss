@@ -1,6 +1,6 @@
 /*-------------------------------*/
 /*--Form--*/
-.form_component{
+.container {
   margin: 0 auto;
   width: 400px;
   text-align: center;
@@ -11,6 +11,10 @@
   border-radius: 4px;
 }
 
+.container:not(:first-of-type){
+  margin: 10px auto;
+}
+
 .result_paginator{
   margin: 0 auto;
   width: 400px ;
@@ -18,8 +22,6 @@
   padding-top: 20px;
   padding-bottom: 20px;
   background-color: #fff;
-  box-shadow: 0 0 6px #04183b1f;
-  border-radius: 4px;
 }
 
 h1 {
@@ -35,7 +37,7 @@ h1 {
   margin: 10px 0 0 0;
 }
 
-.form_component .search_button {
+.search_button {
   color: #fff;
   background-color: #1a9bdb;
   border-color: #1a9bdb;

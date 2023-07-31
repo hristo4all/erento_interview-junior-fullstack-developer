@@ -9,13 +9,16 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FormComponent } from './components/form/form.component';
 
 import {MatInputModule} from '@angular/material/input';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginatorModule,MatPaginator} from '@angular/material/paginator';
 import {NgIf} from '@angular/common';
+import { FormModule } from './components/form/form.module';
+
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormComponent
+    FormComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,9 +28,11 @@ import {NgIf} from '@angular/common';
     ReactiveFormsModule,
     MatInputModule,
     MatPaginatorModule,
-    NgIf
+    NgIf,
+    FormModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpClientModule,HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
