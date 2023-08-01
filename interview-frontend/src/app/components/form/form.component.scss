@@ -37,6 +37,21 @@ h1 {
   margin: 10px 0 0 0;
 }
 
+.search_result {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 6px #04183b1f;
+  margin: 15px 0;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.search_result:hover {
+  background-color: whitesmoke;
+
+}
+
 .search_button {
   color: #fff;
   background-color: #1a9bdb;
@@ -45,5 +60,22 @@ h1 {
   font-size: 1em;
   padding: 0.4em 1em;
   border-radius: 4px;
+  transition: all 0.3s ease;
 }
+
+.search_button:hover {
+  color: #fff;
+  background-color: #1683b9;
+  border-color: #157bad;
+}
+
+.search_button:disabled,
+.search_button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+
+
 /*-------------------------------*/

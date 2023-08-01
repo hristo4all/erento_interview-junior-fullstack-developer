@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup,Validators} from '@angular/forms';
 import {tap, first} from 'rxjs/operators';
 import { FormService } from './form.service';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
+import { PaginatorIntlService } from './paginator-intl.service';
 
 
 
@@ -10,6 +11,7 @@ import { MatPaginator } from '@angular/material/paginator';
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
+  providers: [{provide: MatPaginatorIntl, useClass: PaginatorIntlService}]
 
 })
 export class FormComponent implements OnInit {
@@ -20,9 +22,15 @@ export class FormComponent implements OnInit {
 
   // Form state
   loading: boolean = false;
-  success: boolean = false
+  success: boolean = false;
+
+  noSearchResults: boolean = false;
 
   searchResults: any = [];
+
+  default_page_size = 5;
+
+  pageSlice: any[] = [];
 
   constructor(private fb: FormBuilder, private formService: FormService ){}
 
@@ -49,6 +57,14 @@ export class FormComponent implements OnInit {
         (response) => {
           console.log("response received")
           this.searchResults = response;
+          if (this.searchResults.length <= 0) {
+            this.noSearchResults = true;
+          }
+          else{
+            this.noSearchResults = false;
+          }
+          this.pageSlice = this.searchResults.slice(0,this.default_page_size);
+          //this.searchResults.slice(0,3)
           console.log(this.searchResults);
         },
         (error) => {
@@ -64,5 +80,17 @@ export class FormComponent implements OnInit {
 
     this.loading = false;
   }
+
+handlePageEvent(pageEvent: PageEvent) {
+  console.log('handlePageEvent', pageEvent);
+  const startIndex = pageEvent.pageIndex * pageEvent.pageSize;
+  let endIndex = startIndex + pageEvent.pageSize;
+
+  if (endIndex > this.searchResults.length){
+    endIndex = this.searchResults.length;
+  }
+  this.pageSlice = this.searchResults.slice(startIndex,endIndex);
+
+}
 
 }

@@ -11,8 +11,6 @@ export class FormService {
   constructor(private httpClient: HttpClient) { }
 
   getSearchResult(searchString: string){
-    // add the search string to the request
-    //searchString = "test";
     console.log(searchString.toLocaleLowerCase());
     const safeSearchString = encodeURIComponent(searchString.toLocaleLowerCase());
 

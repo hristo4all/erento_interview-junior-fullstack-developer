@@ -2,7 +2,7 @@
   <h1>Search for a city</h1>
   <form [formGroup]="myForm" (ngSubmit)="submitHandler()">
 
-    Value: {{myForm.value | json}}
+    <!-- Value: {{myForm.value | json}} -->
     <pre></pre>
     <mat-form-field>
       <mat-label>City Search</mat-label>
@@ -20,21 +20,24 @@
   </form>
 </div>
 <div class="container" *ngIf="searchResults">
-  <h3>Cities</h3>
-  <ul>
-    <li *ngFor="let city of searchResults">
+  <h2>Search Results</h2>
+  <div *ngIf="searchResults.length > 0;">
+    <div class="search_result" *ngFor="let city of pageSlice">
       <span>{{city.cityName}}</span>
-    </li>
-  </ul>
-  <!-- <div clas="search_result_wrapper">
+    </div>
     <mat-paginator
     class="result_paginator"
-    [length]="searchResults.length"
+    [length]="this.searchResults.length"
     [pageSize]="5"
     [pageSizeOptions]="[3, 5, 10]"
+    (page)="handlePageEvent($event)"
     aria-label="Select page">
-
   </mat-paginator>
-  </div> -->
+  </div>
+  <div *ngIf="noSearchResults">
+    <div class="search_result">
+      <span>we couldn't find an item for your query.</span>
+    </div>
+  </div>
 </div>
 
