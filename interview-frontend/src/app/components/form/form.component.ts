@@ -37,7 +37,6 @@ export class FormComponent implements OnInit {
       searchString: ['', [Validators.required, Validators.pattern(this.onlyAnyLettersPattern)]],
     });
 
-    //this.myForm.valueChanges.subscribe(console.log)
   }
 
   get searchString(){
@@ -48,14 +47,13 @@ export class FormComponent implements OnInit {
     this.loading = true;
 
     const formValue = this.myForm.value;
-    //console.log(formValue.searchString)
     try {
       const res = this.formService.getSearchResult(formValue.searchString)
       .subscribe(
         (response) => {
-          //console.log("response received")
+
           this.searchResults = response;
-          //console.log(response);
+
           if (this.searchResults.length <= 0) {
             this.noSearchResults = true;
           }
@@ -63,8 +61,6 @@ export class FormComponent implements OnInit {
             this.noSearchResults = false;
           }
           this.pageSlice = this.searchResults.slice(0,this.default_page_size);
-          //this.searchResults.slice(0,3)
-          //console.log(this.searchResults);
         },
         (error) => {
           console.error('Request failed with error')
@@ -81,7 +77,7 @@ export class FormComponent implements OnInit {
   }
 
 handlePageEvent(pageEvent: PageEvent) {
-  //console.log('handlePageEvent', pageEvent);
+
   const startIndex = pageEvent.pageIndex * pageEvent.pageSize;
   let endIndex = startIndex + pageEvent.pageSize;
 
