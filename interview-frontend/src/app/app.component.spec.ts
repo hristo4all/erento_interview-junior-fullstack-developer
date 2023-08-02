@@ -1,12 +1,38 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { NgIf } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { FormComponent } from './components/form/form.component';
+import { FormService } from './components/form/form.service';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule],
-    declarations: [AppComponent]
+    imports: [
+      RouterTestingModule,
+      ReactiveFormsModule,
+      BrowserAnimationsModule,
+      NoopAnimationsModule,
+      MatInputModule,
+      MatPaginatorModule,
+      NgIf,
+    ],
+    declarations: [
+      AppComponent,
+      FormComponent
+    ],
+    providers: [
+      {
+        provide: FormService,
+        useValue: formServiceSpy
+      }
+    ]
+
   }));
+  const formServiceSpy = jasmine.createSpyObj<FormService>;
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -24,6 +50,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('interview-frontend app is running!');
+    expect(compiled.querySelector('.container h1')?.textContent).toContain('Search for a city');
   });
 });

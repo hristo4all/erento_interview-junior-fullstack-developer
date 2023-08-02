@@ -8,10 +8,10 @@
       <mat-label>City Search</mat-label>
       <input matInput placeholder="" formControlName="searchString">
       <mat-error *ngIf="searchString?.hasError('required') && searchString?.touched">
-        This field is required
+        Please provide search query.
       </mat-error>
       <mat-error *ngIf="searchString?.hasError('pattern') && searchString?.touched">
-        Invalid search string
+        Invalid search query.
       </mat-error>
     </mat-form-field>
     <pre></pre>
@@ -29,14 +29,14 @@
     class="result_paginator"
     [length]="this.searchResults.length"
     [pageSize]="5"
-    [pageSizeOptions]="[3, 5, 10]"
+    [pageIndex]="0"
     (page)="handlePageEvent($event)"
     aria-label="Select page">
   </mat-paginator>
   </div>
   <div *ngIf="noSearchResults">
     <div class="search_result">
-      <span>we couldn't find an item for your query.</span>
+      <span>we couldn't find a city matching your query.</span>
     </div>
   </div>
 </div>

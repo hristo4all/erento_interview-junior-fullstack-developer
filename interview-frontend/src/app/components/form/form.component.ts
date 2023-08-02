@@ -1,11 +1,9 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup,Validators} from '@angular/forms';
-import {tap, first} from 'rxjs/operators';
+
 import { FormService } from './form.service';
 import { MatPaginator, MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { PaginatorIntlService } from './paginator-intl.service';
-
-
 
 @Component({
   selector: 'app-form',
@@ -39,7 +37,7 @@ export class FormComponent implements OnInit {
       searchString: ['', [Validators.required, Validators.pattern(this.onlyAnyLettersPattern)]],
     });
 
-    this.myForm.valueChanges.subscribe(console.log)
+    //this.myForm.valueChanges.subscribe(console.log)
   }
 
   get searchString(){
@@ -55,8 +53,9 @@ export class FormComponent implements OnInit {
       const res = this.formService.getSearchResult(formValue.searchString)
       .subscribe(
         (response) => {
-          console.log("response received")
+          //console.log("response received")
           this.searchResults = response;
+          //console.log(response);
           if (this.searchResults.length <= 0) {
             this.noSearchResults = true;
           }
@@ -65,7 +64,7 @@ export class FormComponent implements OnInit {
           }
           this.pageSlice = this.searchResults.slice(0,this.default_page_size);
           //this.searchResults.slice(0,3)
-          console.log(this.searchResults);
+          //console.log(this.searchResults);
         },
         (error) => {
           console.error('Request failed with error')
@@ -82,7 +81,7 @@ export class FormComponent implements OnInit {
   }
 
 handlePageEvent(pageEvent: PageEvent) {
-  console.log('handlePageEvent', pageEvent);
+  //console.log('handlePageEvent', pageEvent);
   const startIndex = pageEvent.pageIndex * pageEvent.pageSize;
   let endIndex = startIndex + pageEvent.pageSize;
 

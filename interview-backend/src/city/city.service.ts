@@ -20,6 +20,7 @@ export class CityService {
     });
 
     resultcities.sort((a, b) => a.cityName.localeCompare(b.cityName));
+
     return resultcities;
   }
 }

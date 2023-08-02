@@ -9,7 +9,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FormComponent } from './components/form/form.component';
 
 import {MatInputModule} from '@angular/material/input';
-import {MatPaginatorModule,MatPaginator} from '@angular/material/paginator';
+import {MatPaginatorModule, MatPaginator} from '@angular/material/paginator';
 import {NgIf} from '@angular/common';
 import { FormModule } from './components/form/form.module';
 
